@@ -1,0 +1,239 @@
+{
+  "personalInfo": {
+    "name": "Sujit Vakkalanka",
+    "title": "2nd-Year B.Tech CSIT Student",
+    "institution": "K L University",
+    "status": "SUJIT VAKKALANKA // K L UNIVERSITY",
+    "headline": "Code across the stack. Systems that actually run.",
+    "intro": "B.Tech CSIT student at K L University working across Python, Java, full-stack development, databases, and machine learning — not as separate boxes to check, but as one connected skill set I'm applying to real builds, from web apps to data-driven tools.",
+    "links": {
+      "github": "https://github.com/SujitVakkalanka1",
+      "linkedin": "https://www.linkedin.com/in/sujit-vakkalanka-862878383/",
+      "email": "vsbsujit883@gmail.com",
+      "resume": "#resume"
+    }
+  },
+  "background": {
+    "heading": "01 // BACKGROUND",
+    "paragraphs": [
+      "I'm pursuing a Bachelor of Technology in Computer Science and Information Technology, currently in my second year. My focus right now spans five areas at once: Python for scripting and automation, Java fundamentals, full-stack web development, database design, and an early but deliberate start in machine learning.",
+      "I don't treat these as isolated courses. Every project I take on is a chance to connect two or three of them — a script that needs a database behind it, a web app that needs a backend built the right way, a dataset that needs both Python and a working understanding of the model behind it."
+    ],
+    "pillars": [
+      {
+        "id": "01",
+        "title": "PYTHON",
+        "desc": "Scripting, automation, and data handling. The language I reach for first when a problem needs solving fast."
+      },
+      {
+        "id": "02",
+        "title": "JAVA",
+        "desc": "Object-oriented design, memory and data structures, the groundwork most backend systems are built on."
+      },
+      {
+        "id": "03",
+        "title": "FULL-STACK DEVELOPMENT",
+        "desc": "Connecting frontend interfaces to backend logic and real data, end to end."
+      },
+      {
+        "id": "04",
+        "title": "MACHINE LEARNING",
+        "desc": "Starting to build the models that make sense of data, grounded in solid fundamentals."
+      }
+    ]
+  },
+  "learningTracks": [
+    {
+      "id": "fullstack",
+      "tag": "WEB DEVELOPMENT TRACK",
+      "title": "Full-Stack Development",
+      "description": "Building complete web applications — frontend interactivity, backend logic, and the data layer that ties them together.",
+      "topics": [
+        "DOM manipulation and event-driven interfaces",
+        "Asynchronous JavaScript and API-driven data flow",
+        "Backend routing and middleware with Express.js",
+        "Connecting applications to real databases, not static data"
+      ]
+    },
+    {
+      "id": "python",
+      "tag": "LANGUAGE TRACK",
+      "title": "Python",
+      "description": "Using Python as the language for automation, scripting, and the early groundwork for machine learning.",
+      "topics": [
+        "Core syntax, data structures, and control flow",
+        "Functions, OOP, and error handling that holds up in real scripts",
+        "File I/O and task automation",
+        "Working with APIs and structured data (JSON)"
+      ]
+    },
+    {
+      "id": "ml",
+      "tag": "EARLY STAGE",
+      "title": "Machine Learning",
+      "description": "Starting from the fundamentals — the math and logic behind the models, before reaching for shortcuts.",
+      "topics": [
+        "Core ML concepts and how models actually learn",
+        "Working with real datasets, not pre-cleaned demos",
+        "Building toward applying Python and data structures knowledge to real ML problems"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "clauseguard",
+      "title": "ClauseGuard AI",
+      "badge": "FULL-STACK AI & WEB3",
+      "deployUrl": "https://clause-guard-ai-plum.vercel.app/",
+      "overview": "An enterprise-grade contract intelligence platform combining a Python/FastAPI backend, React/Tailwind dark-mode dashboard UI, Google Gemini API for legal clause risk analysis (High/Med/Low scoring & automated redlines), and the Algorand SDK for milestone-based smart contract settlement tracking with live Tx ID verification.",
+      "image": "assets/clauseguard.png?v=1.2.5",
+      "tech": ["Python", "FastAPI", "React", "Tailwind CSS", "Algorand SDK", "Gemini API"],
+      "features": [
+        "Contract Ingestion & Section Parsing: Automated PDF/DOCX chunking into semantic legal clauses.",
+        "FastAPI High-Concurrency Backend: Async routing, zero-retention privacy middleware, and PII redaction.",
+        "Gemini AI Risk Engine: High/Med/Low severity scoring, automated clause redlines, and mitigation rationale.",
+        "Algorand On-Chain Settlement: Milestone tracking, cryptographic Tx ID verification, and escrow release via Algorand SDK."
+      ],
+      "challenge": {
+        "problem": "Legal teams and enterprise buyers require instant clause risk detection and automated redlines, paired with verifiable, on-chain milestone settlement tracking without compromising UX or data privacy.",
+        "audience": "Legal tech firms, enterprise procurement teams, and decentralized Web3 applications."
+      },
+      "process": {
+        "decisions": [
+          "Layer 1 - Ingestion: Chunking contracts into normalized clauses with section numbers.",
+          "Layer 2 - FastAPI Backend: Async route execution with zero-retention headers and memory sanitization.",
+          "Layer 3 - Gemini AI Core: Structured Prompting for High/Med/Low risk classification & redline generation.",
+          "Layer 4 - Algorand SDK Settlement: Milestone state machine with on-chain Tx ID verification."
+        ],
+        "architecture": "React Client UI ➔ FastAPI Routing ➔ Gemini AI Risk Engine ➔ Algorand Smart Contract Settlement (Tx ID) ➔ Audit Response"
+      },
+      "impact": {
+        "metrics": [
+          { "value": "100%", "label": "Verified On-Chain Settlement" },
+          { "value": "Gemini API", "label": "Risk Engine Core" },
+          { "value": "Algorand SDK", "label": "Milestone Escrow" }
+        ],
+        "takeaway": "Proved that multi-agent LLM clause reasoning and Web3 smart contract settlement can be unified into a seamless, sub-second dark-mode legal workflow."
+      },
+      "demoCode": "# FastAPI + Gemini LLM Risk Engine + Algorand x402 Protocol Endpoint\nfrom fastapi import FastAPI, HTTPException, Header\nimport algosdk\nimport google.generativeai as gemini\n\napp = FastAPI(title='ClauseGuard AI Engine')\n\n@app.post('/api/v1/analyze-clause')\nasync def analyze_clause_endpoint(\n    request: ClauseAnalysisRequest,\n    x_algorand_tx_id: str = Header(..., alias='X-Algorand-Tx-ID')\n):\n    # 1. Verify Algorand x402 On-Chain Micro-Payment Settlement\n    tx_verified = verify_algorand_settlement(x_algorand_tx_id, min_microalgos=1000)\n    if not tx_verified:\n        raise HTTPException(status_code=402, detail='Payment Required: Invalid Algorand Tx ID')\n\n    # 2. Delegate Legal Text to Gemini API for Clause Risk Analysis\n    prompt = f\"Analyze legal clause: '{request.clause_text}' - Assign Risk Score (HIGH/MEDIUM/LOW), provide suggested redline, and detail mitigation rationale.\"\n    gemini_response = await gemini.generate_content_async(prompt)\n    \n    return {\n        'clause_id': request.clause_id,\n        'payment_status': 'SETTLED_ON_CHAIN',\n        'algorand_tx_id': x_algorand_tx_id,\n        'risk_analysis': gemini_response.structured_json\n    }"
+    },
+    {
+      "id": "xai",
+      "title": "X-AI Financial Reasoning Engine",
+      "badge": "EXPLAINABLE AI SYSTEM",
+      "overview": "A financial reasoning tool built around explainability: it takes in numerical financial data and doesn't just output a prediction, it shows the reasoning behind it. The goal was to make the 'why' behind a financial output as visible as the output itself, not a black box.",
+      "image": "assets/xai.png",
+      "tech": ["Python", "Machine Learning", "Explainable AI"],
+      "features": [
+        "Numerical financial data parser and feature normalization pipeline.",
+        "Explainable AI decision tree rendering feature weight contributions.",
+        "Interactive UI visualizing prediction confidence and step-by-step logic."
+      ],
+      "challenge": {
+        "problem": "Traditional financial ML models operate as black boxes, making predictions without giving financial analysts or users insight into why a decision was reached.",
+        "audience": "Financial analysts, fintech developers, and ML researchers."
+      },
+      "process": {
+        "decisions": [
+          "Focused on feature weight transparency over black-box deep learning models.",
+          "Built step-by-step rationale generation alongside numerical outputs.",
+          "Structured clean Python data processing modules for rapid recalculation."
+        ],
+        "architecture": "Financial Data Input → Python ML Engine → Feature Attribution → Rationale Generation → UI View"
+      },
+      "impact": {
+        "metrics": [
+          { "value": "100%", "label": "Explainable Outputs" },
+          { "value": "0", "label": "Black Box Logic" },
+          { "value": "Python", "label": "Core Engine" }
+        ],
+        "takeaway": "Demonstrated that explainability and interpretability are essential for machine learning applications in risk and financial domain decisions."
+      },
+      "demoCode": "# Explainable Financial Rationale Extractor\ndef generate_reasoning(features, weights):\n    top_contributors = sorted(zip(features, weights), key=lambda x: abs(x[1]), reverse=True)\n    return [{'feature': f, 'impact': w} for f, w in top_contributors]"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Python",
+      "category": "building",
+      "badge": "BUILDING WITH",
+      "subtext": "Python Fundamentals, Backend & Scripting, Python for Data",
+      "level": "88%"
+    },
+    {
+      "name": "React",
+      "category": "building",
+      "badge": "BUILDING WITH",
+      "subtext": "Component Architecture, JSX, State & Hooks",
+      "level": "86%"
+    },
+    {
+      "name": "Node.js",
+      "category": "building",
+      "badge": "BUILDING WITH",
+      "subtext": "Backend APIs, Express.js, Async Runtime",
+      "level": "84%"
+    },
+    {
+      "name": "Java",
+      "category": "foundational",
+      "badge": "FOUNDATIONAL",
+      "subtext": "OOP Principles, Data Structures, Core Logic",
+      "level": "75%"
+    },
+    {
+      "name": "HTML5 & CSS3",
+      "category": "building",
+      "badge": "BUILDING WITH",
+      "subtext": "CSS Grid, Flexbox, Semantic Markup",
+      "level": "90%"
+    },
+    {
+      "name": "JavaScript (ES6+)",
+      "category": "building",
+      "badge": "BUILDING WITH",
+      "subtext": "DOM, Async/Await, Events",
+      "level": "82%"
+    },
+    {
+      "name": "SQL / Databases",
+      "category": "exploring",
+      "badge": "EXPLORING",
+      "subtext": "Schema Design, Queries, Normalization",
+      "level": "78%"
+    },
+    {
+      "name": "Machine Learning",
+      "category": "exploring",
+      "badge": "EARLY STAGE",
+      "subtext": "Fundamentals, Python-based Modeling",
+      "level": "60%"
+    }
+  ],
+  "certifications": [
+    {
+      "id": "js-essentials",
+      "title": "JavaScript Essentials 1",
+      "issuer": "Cisco Networking Academy",
+      "badge": "CISCO ACADEMY",
+      "date": "Issued Mar 2026",
+      "url": "assets/certificates/javascript-essentials.pdf"
+    },
+    {
+      "id": "css-essentials",
+      "title": "CSS Essentials",
+      "issuer": "Cisco Networking Academy",
+      "badge": "CISCO ACADEMY",
+      "date": "Issued Feb 2026",
+      "url": "assets/certificates/css-essentials.pdf"
+    },
+    {
+      "id": "html-essentials",
+      "title": "HTML Essentials",
+      "issuer": "Cisco Networking Academy",
+      "badge": "CISCO ACADEMY",
+      "date": "Issued Jan 2026",
+      "url": "assets/certificates/html-essentials.pdf"
+    }
+  ]
+}
