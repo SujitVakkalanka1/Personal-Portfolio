@@ -26,7 +26,7 @@ const INLINE_PORTFOLIO_DATA = {
       "I don't treat these as isolated courses. Every project I take on is a chance to connect two or three of them — a script that needs a database behind it, a web app that needs a backend built the right way, a dataset that needs both Python and a working understanding of the model behind it."
     ],
     pillars: [
-      { id: "01", title: "PYTHON", desc: "Scripting, automation, and data handling. The language I reach for first when a problem needs solving fast." },
+      { id: "01", title: "PYTHON", desc: "My primary language. The one I reach for first when a problem needs solving, from quick scripts to backend logic and early ML work." },
       { id: "02", title: "JAVA", desc: "Object-oriented design, memory and data structures, the groundwork most backend systems are built on." },
       { id: "03", title: "FULL-STACK DEVELOPMENT", desc: "Connecting frontend interfaces to backend logic and real data, end to end." },
       { id: "04", title: "MACHINE LEARNING", desc: "Starting to build the models that make sense of data, grounded in solid fundamentals." }
