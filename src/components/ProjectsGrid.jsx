@@ -13,6 +13,7 @@ function ProjectShaderCanvas({ imgSrc }) {
     const scene = new THREE.Scene();
     const camera = new THREE.Camera();
     const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: false });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(container.clientWidth, container.clientHeight);
 
     const textureLoader = new THREE.TextureLoader();
@@ -127,6 +128,10 @@ function ProjectShaderCanvas({ imgSrc }) {
     container.addEventListener('mouseenter', handleMouseEnter);
     container.addEventListener('mousemove', handleMouseMove);
     container.addEventListener('mouseleave', handleMouseLeave);
+    container.addEventListener('pointerdown', handleMouseEnter);
+    container.addEventListener('pointermove', handleMouseMove);
+    container.addEventListener('pointerup', handleMouseLeave);
+    container.addEventListener('pointercancel', handleMouseLeave);
 
     let animId = null;
     const renderLoop = (time) => {
@@ -147,6 +152,10 @@ function ProjectShaderCanvas({ imgSrc }) {
       container.removeEventListener('mouseenter', handleMouseEnter);
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mouseleave', handleMouseLeave);
+      container.removeEventListener('pointerdown', handleMouseEnter);
+      container.removeEventListener('pointermove', handleMouseMove);
+      container.removeEventListener('pointerup', handleMouseLeave);
+      container.removeEventListener('pointercancel', handleMouseLeave);
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
       texture.dispose();

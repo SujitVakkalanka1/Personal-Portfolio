@@ -34,7 +34,7 @@ export default function Hero({ onOpenResume }) {
       const docLeft = cRect.left + (window.scrollX || 0);
       const targetTop = sRect.top;
       const targetLeft = sRect.left;
-      const scaleRatio = Math.min(0.42, Math.max(0.2, (sRect.height || 26) / (cRect.height || 75)));
+      const scaleRatio = Math.min(0.55, Math.max(0.18, (sRect.height || 24) / (cRect.height || 65)));
 
       measurements = {
         docTop,
