@@ -79,3 +79,4 @@ This repository includes a pre-configured `vercel.json` optimized for Vite:
 - **LinkedIn**: [Sujit Vakkalanka](https://www.linkedin.com/in/sujit-vakkalanka-862878383/)
 - **Email**: vsbsujit883@gmail.com
 - **Location**: Hyderabad, India
+

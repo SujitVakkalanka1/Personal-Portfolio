@@ -204,6 +204,7 @@ export default function ProjectsGrid({ onOpenProject }) {
               id="project-search"
               className="project-search-input"
               placeholder="Search projects or tech tags..."
+              maxLength={80}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               aria-label="Search Projects"

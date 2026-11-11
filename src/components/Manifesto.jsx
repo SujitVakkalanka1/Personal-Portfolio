@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Manifesto() {
   const containerRef = useRef(null);
 
-  const rawText = "B.Tech CSIT student at K L University working across Python, full-stack development, databases, and machine learning — not as separate boxes to check, but as one connected skill set I'm applying to real builds, from web apps to data-driven tools.";
+  const rawText = "B.Tech CSIT student working across Python, full-stack development, databases, and machine learning — not as separate boxes to check, but as one connected skill set I'm applying to real builds, from web apps to data-driven tools.";
   const words = rawText.split(/\s+/);
   const limeHighlights = ["Python,", "full-stack", "databases,", "machine", "learning", "one", "connected", "skill", "set", "real", "builds,"];
 

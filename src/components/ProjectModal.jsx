@@ -141,15 +141,15 @@ def generate_reasoning(features, weights):
 
   return (
     <div className="modal-backdrop active" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-      <div className="modal-dialog">
+      <div className="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <button type="button" className="modal-close-btn" onClick={onClose} aria-label="Close dialog">✕</button>
 
         {mode === 'resume' && (
           <div>
             <span className="spotlight-badge" style={{ color: 'var(--accent-lime)' }}>ACADEMIC CREDENTIALS</span>
-            <h3 className="modal-title">Official Resume // Sujit Vakkalanka</h3>
+            <h3 className="modal-title" id="modal-title">Official Resume // Sujit Vakkalanka</h3>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-dim)', marginBottom: '1.5rem' }}>
-              B.Tech CSIT (2nd Year) • K L University (Class of 2029)
+              B.Tech CSIT (2nd Year) • Class of 2029 (Hyderabad)
             </p>
             <div className="modal-section-block">
               <h4 className="modal-sec-title">// STATUS SPECIFICATION</h4>

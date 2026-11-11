@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function ContactFooter({ onShowToast }) {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '', honey: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [mailtoUrl, setMailtoUrl] = useState('');
@@ -20,6 +20,37 @@ export default function ContactFooter({ onShowToast }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 1. Honeypot check - silent drop if bot filled it
+    if (formData.honey) {
+      setIsSubmitted(true);
+      return;
+    }
+
+    // 2. Client-side input sanitization & validation
+    const cleanName = formData.name.replace(/[\r\n]/g, ' ').trim();
+    const cleanEmail = formData.email.trim();
+    const cleanMessage = formData.message.trim();
+
+    if (!cleanName || !cleanEmail || !cleanMessage) {
+      onShowToast('Please fill out all required fields.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRegex.test(cleanEmail)) {
+      onShowToast('Please enter a valid email address.');
+      return;
+    }
+
+    // 3. Client-side rate-limiting / throttle check (10s)
+    const lastSubmitTime = localStorage.getItem('portfolio-last-submit');
+    const now = Date.now();
+    if (lastSubmitTime && now - parseInt(lastSubmitTime, 10) < 10000) {
+      onShowToast('Please wait a moment before sending another message.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -30,24 +61,26 @@ export default function ContactFooter({ onShowToast }) {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          _subject: `New Portfolio Inquiry from ${formData.name}`,
+          name: cleanName,
+          email: cleanEmail,
+          message: cleanMessage,
+          _subject: `New Portfolio Inquiry from ${cleanName}`,
           _captcha: 'false'
         })
       });
 
       if (response.ok) {
+        localStorage.setItem('portfolio-last-submit', String(Date.now()));
         setIsSubmitted(true);
-        setMailtoUrl(`mailto:vsbsujit883@gmail.com?subject=Portfolio%20Inquiry%20from%20${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}`);
-        onShowToast(`Thank you ${formData.name}! Message dispatched to vsbsujit883@gmail.com`);
+        setMailtoUrl(`mailto:vsbsujit883@gmail.com?subject=Portfolio%20Inquiry%20from%20${encodeURIComponent(cleanName)}&body=${encodeURIComponent(cleanMessage)}`);
+        onShowToast(`Thank you ${cleanName}! Message dispatched to vsbsujit883@gmail.com`);
       } else {
         throw new Error('Form error');
       }
     } catch {
+      localStorage.setItem('portfolio-last-submit', String(Date.now()));
       setIsSubmitted(true);
-      setMailtoUrl(`mailto:vsbsujit883@gmail.com?subject=Portfolio%20Inquiry%20from%20${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}`);
+      setMailtoUrl(`mailto:vsbsujit883@gmail.com?subject=Portfolio%20Inquiry%20from%20${encodeURIComponent(cleanName)}&body=${encodeURIComponent(cleanMessage)}`);
       onShowToast('Network dispatch error: mailto client link configured.');
     } finally {
       setIsSubmitting(false);
@@ -55,7 +88,7 @@ export default function ContactFooter({ onShowToast }) {
   };
 
   const handleReset = () => {
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', message: '', honey: '' });
     setIsSubmitted(false);
   };
 
@@ -72,9 +105,9 @@ export default function ContactFooter({ onShowToast }) {
             </p>
 
             <div className="contact-direct-links">
-              <a href="#" className="contact-chip-link" onClick={handleCopyEmail}>
+              <button type="button" className="contact-chip-link" onClick={handleCopyEmail}>
                 <span>✉</span> vsbsujit883@gmail.com [Copy to Clipboard]
-              </a>
+              </button>
               <a href="https://github.com/SujitVakkalanka1" target="_blank" rel="noopener noreferrer" className="contact-chip-link">
                 <span>⚙</span> github.com/SujitVakkalanka1 ↗
               </a>
@@ -87,6 +120,18 @@ export default function ContactFooter({ onShowToast }) {
           <div className="contact-form-card">
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} id="contact-form">
+                {/* Anti-spam honeypot field - invisible to genuine users */}
+                <input
+                  type="text"
+                  name="_honey"
+                  style={{ display: 'none' }}
+                  value={formData.honey}
+                  onChange={(e) => setFormData({ ...formData, honey: e.target.value })}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
                 <div className="form-group">
                   <label htmlFor="form-name" className="form-label">YOUR NAME</label>
                   <input
@@ -94,6 +139,7 @@ export default function ContactFooter({ onShowToast }) {
                     id="form-name"
                     className="form-input"
                     placeholder="e.g. Alex Morgan"
+                    maxLength={80}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
@@ -107,6 +153,7 @@ export default function ContactFooter({ onShowToast }) {
                     id="form-email"
                     className="form-input"
                     placeholder="alex@company.com"
+                    maxLength={120}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
@@ -119,6 +166,7 @@ export default function ContactFooter({ onShowToast }) {
                     id="form-message"
                     className="form-textarea"
                     placeholder="Hello Sujit, we would like to discuss..."
+                    maxLength={3000}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
@@ -149,7 +197,7 @@ export default function ContactFooter({ onShowToast }) {
               <li>B.Tech CSIT (2nd Year)</li>
               <li>Class of 2029</li>
               <li>Full-Stack &amp; Systems</li>
-              <li>K L University (Hyderabad)</li>
+              <li>Hyderabad, India</li>
             </ul>
           </div>
 

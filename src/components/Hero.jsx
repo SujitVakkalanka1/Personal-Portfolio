@@ -312,7 +312,7 @@ export default function Hero({ onOpenResume }) {
 
           <div>
             <p className="hero-bio-summary">
-              B.Tech CSIT student at K L University working across Python, full-stack development, databases, and machine learning — not as separate boxes to check, but as one connected skill set I'm applying to real builds, from web apps to data-driven tools.
+              B.Tech CSIT student (Class of 2029) working across Python, full-stack development, databases, and machine learning — not as separate boxes to check, but as one connected skill set I'm applying to real builds, from web apps to data-driven tools.
             </p>
           </div>
         </div>

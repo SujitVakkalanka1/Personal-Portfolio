@@ -33,8 +33,8 @@ export default function SpotlightCard() {
                   <span className="rec-val">Full-Stack &amp; Systems</span>
                 </div>
                 <div className="student-record-row">
-                  <span className="rec-label">ACADEMIC BASE:</span>
-                  <span className="rec-val" style={{ color: 'var(--text-dim)' }}>K L University</span>
+                  <span className="rec-label">LOCATION:</span>
+                  <span className="rec-val" style={{ color: 'var(--text-dim)' }}>Hyderabad, India</span>
                 </div>
               </div>
             </div>
