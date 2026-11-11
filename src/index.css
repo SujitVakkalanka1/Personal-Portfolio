@@ -2114,6 +2114,10 @@ img {
     height: 62px;
   }
 
+  .nav-brand-slot {
+    min-width: auto;
+  }
+
   .nav-brand-target {
     font-size: 0.8125rem;
     letter-spacing: 0.05em;
@@ -2233,6 +2237,12 @@ img {
   }
 
   /* Marquee */
+  .marquee-container-wrap {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 3.5rem;
+  }
+
   .marquee-item {
     font-size: 0.875rem;
     padding: 0 1rem;

@@ -56,6 +56,10 @@ export default function Header({ theme = 'dark', onToggleTheme }) {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
+    if (window.lenis) {
+      window.lenis.on('scroll', handleScroll);
+    }
+
     const updateClock = () => {
       const now = new Date();
       const options = { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
@@ -66,6 +70,9 @@ export default function Header({ theme = 'dark', onToggleTheme }) {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (window.lenis) {
+        window.lenis.off('scroll', handleScroll);
+      }
       clearInterval(interval);
     };
   }, []);
